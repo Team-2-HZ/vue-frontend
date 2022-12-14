@@ -44,6 +44,25 @@ const routes = [
     path: "/register",
     component: () => import("@/pages/Register.vue"),
   },
+
+  // Target pages - TODO: Is there a way to make this more compact?
+  {
+    name: "ViewTargets",
+    path: "/target",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/pages/target/ViewTargets.vue"),
+  },
+
+  {
+    name: "CreateTarget",
+    path: "/target/create",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/pages/target/CreateTarget.vue"),
+  },
 ];
 
 const router = createRouter({
