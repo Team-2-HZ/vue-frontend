@@ -24,7 +24,7 @@ const handleSubmit = async () => {
             .from('targets')
             .insert({ user_id: user.value.id, calories: form.value.calories })
         router.push({
-            name: "Home",
+            name: "ViewTargets",
         });
     } catch (error) {
         alert(error.message);
