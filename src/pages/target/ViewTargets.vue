@@ -44,6 +44,8 @@ console.log(data.value);
                 <b>CALORIES:</b>{{ target.calories }}
                 <br><br>
 
+                <!--TODO: USE A CARD COMPONENT INSTEAD -->
+                <!--TODO: ADD A LINK TO EDIT, DELETE AND USE A TARGET FOR MEAL -->
             </div>
         </div>
     </div>
