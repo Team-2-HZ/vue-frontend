@@ -61,8 +61,8 @@ export default function useAuthUser() {
         //arbitrary meta data is passed as the second argument under a data key
         // to the Supabase signUp method
         data: meta,
-        // the to redirect to after the user confirms their email
-        redirectTo: `${window.location.origin}/me?fromEmail=registrationConfirmation"`,
+        // the page to redirect to after the user confirms their email
+        redirectTo: `${window.location.origin}/Dashboard`,
       }
     );
     if (error) throw error;
@@ -90,12 +90,14 @@ export default function useAuthUser() {
     return user;
   };
 
-  /**
-   * Will be useful for informing the application what to do
-   * when Supabase redirects a user back to app
-   * after confirming email address
-   */
-  const maybeHandleEmailConfirmation = async (route) => { };
+  // /**
+  //  * Will be useful for informing the application what to do
+  //  * when Supabase redirects a user back to app
+  //  * after confirming email address
+  //  */
+  // const maybeHandleEmailConfirmation = async (route) => { };
+
+
   return {
     user,
     login,
@@ -106,6 +108,6 @@ export default function useAuthUser() {
     register,
     update,
     sendPasswordResetEmail,
-    maybeHandleEmailConfirmation,
+    // maybeHandleEmailConfirmation,
   };
 }
