@@ -93,7 +93,7 @@ a{text-decoration: none}
 </style>
 
 <script>
-// Enableing bootstrap tooltips
+// Enabling bootstrap tooltips
 $(function () {
   $('[data-toggle="tooltip"]').tooltip({
     trigger: 'hover'
