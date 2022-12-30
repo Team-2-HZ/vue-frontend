@@ -66,7 +66,7 @@ const routes = [
 
   {
     name: "Meal",
-    path: "/meal",
+    path: "/meal/:id",
     meta: {
       requiresAuth: true,
     },
