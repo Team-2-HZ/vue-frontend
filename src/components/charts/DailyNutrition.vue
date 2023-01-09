@@ -41,7 +41,7 @@ const dailyNutritionMale = {
 
 async function getDailyNutrition() {
   console.log('fetching resource');
-  const response = await fetch('https://nutrition-calculation-app.onrender.com/api/v1//nutrition/summary?days=60', {
+  const response = await fetch('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary?days=60', {
     cache: 'no-cache'
   });
   const data = await response.json();

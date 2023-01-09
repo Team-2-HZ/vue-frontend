@@ -55,7 +55,6 @@ const dailyNutritionMale = {
       }
     });
     const data = await response.json();
-    console.log(data);
     return data;
   }
 
@@ -72,7 +71,6 @@ async function getPercentualData() {
     if (label == 'KCAL') label = 'ENERC_KCAL';
     if (label == 'SAT. FAT') label = 'SATURATED_FAT';
     if (label == 'FIBERS') label = 'FIBRE';
-    console.log(label, dailyIntake[label]);
     // const percentage = ((dailyIntake[label] / nutritionGoals[label]) * 100);
     // if (!(percentage > 0)) continue;
     data.push(dailyIntake[label]);
@@ -83,7 +81,6 @@ async function getPercentualData() {
   //   if (!(percentage > 0)) continue;
   //   data.push(percentage);
   // }
-  console.log(data);
   return data;
 }
 
@@ -122,6 +119,10 @@ export default {
     plugins: {
       type: Array,
       default: () => []
+    },
+    days: {
+      type: Number,
+      default: 1
     }
   },
   data() {
