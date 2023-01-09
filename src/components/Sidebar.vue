@@ -1,13 +1,31 @@
+<script setup>
+import useAuthUser from "../composables/UseAuthUser.js";
+const { user } = useAuthUser();
+
+</script>
+
 <template>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
-            <div>
-                <div class="nav_list">
-                    <router-link class="nav_link" to="/target" data-toggle="tooltip" data-placement="right"
-                        title="Targets"><i class="bi bi-bullseye"></i></router-link>
-                </div>
-            </div> <router-link to="#" class="nav_link" data-toggle="tooltip" data-placement="right" title="Logout"><i
-                    class="bi bi-box-arrow-in-right"></i></router-link>
+
+            <div class="nav_list" v-if="user">
+                <router-link class="nav_link" to="/target" data-toggle="tooltip" data-placement="right"
+                    title="Targets"><i class="bi bi-bullseye"></i></router-link>
+            </div>
+            <div vclass="nav_list" v-else>
+                <router-link class="nav_link" to="/" data-toggle="tooltip" data-placement="right" title="Home"><i
+                        class="bi bi-house"></i></router-link>
+            </div>
+
+            <!--If a user is logged in, show logout button. Else, show login and registration buttons-->
+            <div v-if="user">
+                <router-link to="/logout" class="nav_link" data-toggle="tooltip" data-placement="right" title="Logout"><i
+                        class="bi bi-box-arrow-left"></i></router-link>
+            </div>
+            <div v-else>
+                <router-link to="/login" class="nav_link" data-toggle="tooltip" data-placement="right"
+                    title="Login / Register"><i class="bi bi-box-arrow-in-right"></i></router-link>
+            </div>
         </nav>
     </div>
     <!--Container Main start-->
