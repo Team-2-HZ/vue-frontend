@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router";
+import TargetCard from "../../components/TargetCard.vue"
 
 import useAuthUser from "../../composables/UseAuthUser.js";
 import useSupabase from "../../composables/UseSupabase.js";
@@ -33,19 +34,12 @@ console.log(data.value);
 
 <template>
     <div v-if="dataLoaded">
+        <router-link :to="{ name: 'CreateTarget' }">Create a new nutrition target</router-link>
         <div v-if="data.length === 0">No targets yet...</div>
         <div v-else>
             <div v-for="(target, index) in data" :key="index">
-
-                <!--id of target-->
-                <b>ID:</b> {{ target.id }}
-                <br>
-                <!--calories of target-->
-                <b>CALORIES:</b>{{ target.calories }}
-                <br><br>
-
-                <!--TODO: USE A CARD COMPONENT INSTEAD -->
-                <!--TODO: ADD A LINK TO EDIT, DELETE AND USE A TARGET FOR MEAL -->
+                <TargetCard :id="target.id" :energy="target.energy" :protein="target.protein" :carbs="target.carbs"
+                    :unsatFats="target.unsatFats" />
             </div>
         </div>
     </div>
