@@ -19,8 +19,8 @@ const { user } = useAuthUser();
 
             <!--If a user is logged in, show logout button. Else, show login and registration buttons-->
             <div v-if="user">
-                <router-link to="/logout" class="nav_link" data-toggle="tooltip" data-placement="right" title="Logout"><i
-                        class="bi bi-box-arrow-left"></i></router-link>
+                <router-link to="/logout" class="nav_link" data-toggle="tooltip" data-placement="right"
+                    title="Logout"><i class="bi bi-box-arrow-left"></i></router-link>
             </div>
             <div v-else>
                 <router-link to="/login" class="nav_link" data-toggle="tooltip" data-placement="right"
@@ -29,7 +29,7 @@ const { user } = useAuthUser();
         </nav>
     </div>
     <!--Container Main start-->
-    <div class="height-100 bg-light pt-3">
+    <div class="height-100 pt-3">
         <RouterView />
     </div>
 </template>
