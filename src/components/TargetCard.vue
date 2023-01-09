@@ -1,21 +1,23 @@
 <template>
-    <!--id of target-->
-    <b>ID:</b> {{ id }}
-    <br>
-    <!--calories of target-->
-    <b>ENERGY:</b>{{ energy }}
-    <br>
-    <b>PROTEIN:</b>{{ protein }}
-    <br>
-    <b>CARBS:</b>{{ carbs }}
-    <br>
-    <b>UNSAT. FATS:</b>{{ unsatFats }}
-    <br>
-    <router-link :to="{ name: 'Meal', params: { id: id } }">Use this target for meal</router-link>
-    <!--NOTE: Right now we passing the id for convenience. 
-    This means that we make the call to supabase twice. Not sure if we should.
-    Also, in a real app, we should probably enable RLS and implement other security measures
--->
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+                <!-- <b>ID:</b> {{ id }}
+                <br> -->
+                <!--calories of target-->
+                <b>ENERGY:</b> {{ energy }} kcal
+                <br>
+                <b>PROTEIN:</b> {{ protein }} gram
+                <br>
+                <b>CARBS:</b> {{ carbs }} gram
+                <br>
+                <b>UNSAT. FATS:</b> {{ unsatFats }} gram
+            </p>
+            <router-link to="/login"><button style="margin-right: 10px" type="button" class="btn btn-success">Use this
+                    target</button></router-link>
+        </div>
+    </div>
 </template>
 
 
