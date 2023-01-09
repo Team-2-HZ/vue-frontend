@@ -34,10 +34,12 @@ console.log(data.value);
 
 <template>
     <div v-if="dataLoaded">
+        <router-link :to="{ name: 'CreateTarget' }">Create a new nutrition target</router-link>
         <div v-if="data.length === 0">No targets yet...</div>
         <div v-else>
             <div v-for="(target, index) in data" :key="index">
-                <TargetCard :id="target.id" :calories="target.calories" />
+                <TargetCard :id="target.id" :energy="target.energy" :protein="target.protein" :carbs="target.carbs"
+                    :unsatFats="target.unsatFats" />
             </div>
         </div>
     </div>
