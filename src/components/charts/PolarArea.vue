@@ -59,11 +59,11 @@ const dailyNutritionMale = {
   }
 
 
-async function getPercentualData() {
+async function getPercentualData(days: number) {
   // should change depending on users gender
   const nutritionGoals = dailyNutritionMale
   const data : number[] = [];
-  const dailyIntake = await getDailyNutrition('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary?days=1');
+  const dailyIntake = await getDailyNutrition('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary?days=' + days);
   if (!dailyIntake) return;
   const dailyIntakeKeys = Object.keys(dailyIntake)
   for (let i = 0; i < labels.length; i++) {
@@ -176,7 +176,7 @@ export default {
   async mounted () {
     const fetchData = async () => {
       try {
-        const data = await getPercentualData.bind(this)();
+        const data = await getPercentualData.bind(this)(this.days);
         this.data["datasets"][0].data = data;
         // console.log(this.chartData["datasets"][0].data);
         // set the background color based on the data values
