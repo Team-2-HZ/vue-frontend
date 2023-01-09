@@ -19,6 +19,17 @@ import {
 } from 'chart.js'
 import { PolarArea } from 'vue-chartjs'
 
+const labels = 
+[
+  'KCAL',
+  'CARBS',
+  'SUGAR',
+  'FIBERS',
+  'FAT',
+  'SAT. FAT',
+  'PROTEIN',
+]
+
 const dailyNutritionMale = {
     KCAL: 2500,
     CARBS: 300,
@@ -38,9 +49,14 @@ const dailyNutritionMale = {
   }
 
   async function getDailyNutrition(apiUrl) {
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl, {
+      headers: {
+        'Authorization': 'Bearer miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X'
+      }
+    });
     const data = await response.json();
-    return data[0];
+    console.log(data);
+    return data;
   }
 
 
@@ -48,14 +64,26 @@ async function getPercentualData() {
   // should change depending on users gender
   const nutritionGoals = dailyNutritionMale
   const data : number[] = [];
-  const dailyIntake = await getDailyNutrition(this.apiUrl);
+  const dailyIntake = await getDailyNutrition('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary?days=1');
+  if (!dailyIntake) return;
   const dailyIntakeKeys = Object.keys(dailyIntake)
-  for (let i = 0; i < dailyIntakeKeys.length; i++) {
-    let key = dailyIntakeKeys[i];
-    const percentage = (dailyIntake[key] / nutritionGoals[key]) * 100;
-    if (!(percentage > 0)) continue;
-    data.push(percentage);
+  for (let i = 0; i < labels.length; i++) {
+    let label = labels[i];
+    if (label == 'KCAL') label = 'ENERC_KCAL';
+    if (label == 'SAT. FAT') label = 'SATURATED_FAT';
+    if (label == 'FIBERS') label = 'FIBRE';
+    console.log(label, dailyIntake[label]);
+    // const percentage = ((dailyIntake[label] / nutritionGoals[label]) * 100);
+    // if (!(percentage > 0)) continue;
+    data.push(dailyIntake[label]);
   }
+  // for (let i = 0; i < dailyIntakeKeys.length; i++) {
+  //   let key = dailyIntakeKeys[i];
+  //   const percentage = (dailyIntake[key] / nutritionGoals[key]) * 100;
+  //   if (!(percentage > 0)) continue;
+  //   data.push(percentage);
+  // }
+  console.log(data);
   return data;
 }
 
@@ -100,15 +128,7 @@ export default {
     return {
       intervalId: null,
       data: {
-        labels: [
-          'KCAL',
-          'CARBS',
-          'SUGAR',
-          'FIBERS',
-          'FAT',
-          'SAT. FAT',
-          'PROTEIN',
-          ],
+        labels: labels,
         datasets: [
           {
             label: "Daily intake",

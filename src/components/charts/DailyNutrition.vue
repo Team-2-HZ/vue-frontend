@@ -40,8 +40,12 @@ const dailyNutritionMale = {
   }
 
 async function getDailyNutrition() {
-  const response = await fetch('https://638755cdd9b24b1be3ed676d.mockapi.io/api/v1/nutrition');
+  console.log('fetching resource');
+  const response = await fetch('https://nutrition-calculation-app.onrender.com/api/v1//nutrition/summary?days=60', {
+    cache: 'no-cache'
+  });
   const data = await response.json();
+  console.log(data);
   return data[0];
 }
 
