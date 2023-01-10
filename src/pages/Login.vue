@@ -32,9 +32,9 @@ const handleLogin = async (provider) => {
   <form class="right" @submit.prevent="handleLogin()">
     <div style="width: 75%">
       <div class="form-group">
-        <label for="emailInput">Email address</label>
+        <label for="emailInput">Email Address</label>
         <input v-model="form.email" type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
-          placeholder="Enter email">
+          placeholder="Enter Email Address...">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
       </div>
       <br>
@@ -43,21 +43,18 @@ const handleLogin = async (provider) => {
           <label for="passwordInput">Password</label>
           <router-link to="/ForgotPassword">Forgot Password?</router-link>
         </div>
-        <input v-model="form.password" type="password" class="form-control" id="passwordInput" placeholder="Password">
+        <input v-model="form.password" type="password" class="form-control" id="passwordInput"
+          placeholder="Enter Password...">
       </div>
       <br>
-      <div class="d-flex justify-content-between">
-        <button type="submit" class="btn btn-success">Login</button>
-        <router-link to="/Register"><button type="button" class="btn btn-outline-success">Not a user? Register
+      <div>
+        <button type="submit" class="btn btn-success" style="width: 100%">Login</button>
+        <br>
+        <br>
+        <router-link to="/Register"><button type="button" class="btn btn-outline-success" style="width: 100%">Not yet a
+            user? Register
             instead.</button></router-link>
       </div>
     </div>
   </form>
-  <!-- <form @submit.prevent="handleLogin()">
-      <h1>Login</h1>
-      <label>Email <input v-model="form.email" type="email" /></label>
-      <label>Password <input v-model="form.password" type="password" /></label>
-      <button>Login</button>
-      <router-link to="/forgotPassword">Forgot Password?</router-link>
-    </form> -->
 </template>
