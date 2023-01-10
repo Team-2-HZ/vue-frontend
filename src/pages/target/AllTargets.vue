@@ -33,14 +33,69 @@ console.log(data.value);
 </script>
 
 <template>
-    <div v-if="dataLoaded">
-        <router-link :to="{ name: 'CreateTarget' }">Create a new nutrition target</router-link>
-        <div v-if="data.length === 0">No targets yet...</div>
-        <div v-else>
-            <div class="card-columns" v-for="(target, index) in data" :key="index">
-                <TargetCard :id="target.id" :energy="target.energy" :protein="target.protein" :carbs="target.carbs"
-                    :unsatFats="target.unsatFats" />
-            </div>
+    <div class="container">
+        <div class="left">
+            <h1>Nutrition Targets</h1>
+            <p>Here you can find all the nutrition targets you have created, which you can use when weighing your meal.
+            </p>
+            <router-link :to="{ name: 'CreateTarget' }"><button type="button" class="btn btn-success">Create new
+                    target</button></router-link>
         </div>
+
+        <!-- <div class="right card-deck" v-if="dataLoaded">
+            <div v-if="data.length === 0">No targets yet...</div>
+            <div class="card-deck" v-else>
+                <TargetCard v-for="(target, index) in data" :key="index" :id="target.id" :energy="target.energy"
+                    :protein="target.protein" :carbs="target.carbs" :unsatFats="target.unsatFats" />
+            </div>
+        </div> -->
+
+        <table class="table right">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Energy (kcal)</th>
+                    <th scope="col">Protein (gram)</th>
+                    <th scope="col">Carbs (gram)</th>
+                    <th scope="col">Unsat. Fats (gram)</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(target, index) in data">
+                    <th scope="row">{{ target.id }}</th>
+                    <td>{{ target.energy }}</td>
+                    <td>{{ target.protein }}</td>
+                    <td>{{ target.carbs }}</td>
+                    <td>{{ target.unsatFats }}</td>
+                    <td><router-link :to="{ name: 'Meal', params: { id: target.id } }"><button type="button"
+                                class="btn btn-success">Use this
+                                target</button></router-link></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
+
+<style>
+/*TODO: The splitscreen effect I'm going for can probably be achieved more cleanly with Flexbox or Grid*/
+
+.container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Split the screen in half */
+.left {
+    margin-right: 4%;
+    width: 25%;
+}
+
+/* Control the right side */
+.right {
+    margin-top: 0;
+    width: 75%;
+}
+</style>
