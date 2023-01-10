@@ -32,7 +32,7 @@ console.log(data.value);
 </script>
 
 <template>
-    <div class="container">
+    <div class="container-1-3">
         <div class="left">
             <h1>Nutrition Targets</h1>
             <p>Here you can find all the nutrition targets you have created, which you can use when weighing your meal.
@@ -75,24 +75,3 @@ console.log(data.value);
         </table>
     </div>
 </template>
-
-<style>
-.container {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-/* Split the screen in half */
-.left {
-    margin-right: 4%;
-    width: 25%;
-}
-
-/* Control the right side */
-.right {
-    margin-top: 0;
-    width: 75%;
-}
-</style>
