@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router";
-import TargetCard from "../../components/TargetCard.vue"
 
 import useAuthUser from "../../composables/UseAuthUser.js";
 import useSupabase from "../../composables/UseSupabase.js";
@@ -78,8 +77,6 @@ console.log(data.value);
 </template>
 
 <style>
-/*TODO: The splitscreen effect I'm going for can probably be achieved more cleanly with Flexbox or Grid*/
-
 .container {
     margin: 0;
     padding: 0;
