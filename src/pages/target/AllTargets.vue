@@ -62,7 +62,7 @@ console.log(data.value);
             </thead>
             <tbody>
                 <tr v-for="(target, index) in data">
-                    <th scope="row">{{ target.id }}</th>
+                    <th scope="row">{{ target.name }}</th>
                     <td>{{ target.energy }}</td>
                     <td>{{ target.protein }}</td>
                     <td>{{ target.carbs }}</td>
