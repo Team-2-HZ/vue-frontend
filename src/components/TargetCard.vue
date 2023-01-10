@@ -14,7 +14,8 @@
                 <br>
                 <b>UNSAT. FATS:</b> {{ unsatFats }} gram
             </p>
-            <router-link to="/login"><button style="margin-right: 10px" type="button" class="btn btn-success">Use this
+            <router-link :to="{ name: 'Meal', params: { id: id } }"><button style="margin-right: 10px" type="button"
+                    class="btn btn-success">Use this
                     target</button></router-link>
         </div>
     </div>
