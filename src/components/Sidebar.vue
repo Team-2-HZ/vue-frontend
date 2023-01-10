@@ -11,6 +11,8 @@ const { user } = useAuthUser();
             <div class="nav_list" v-if="user">
                 <router-link class="nav_link" to="/target" data-toggle="tooltip" data-placement="right"
                     title="Targets"><i class="bi bi-bullseye"></i></router-link>
+                <router-link class="nav_link" to="/stats" data-toggle="tooltip" data-placement="right"
+                    title="Stats"><i class="bi bi-bar-chart-line-fill"></i></router-link>
             </div>
             <div vclass="nav_list" v-else>
                 <router-link class="nav_link" to="/" data-toggle="tooltip" data-placement="right" title="Home"><i

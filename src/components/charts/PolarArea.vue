@@ -63,7 +63,7 @@ async function getPercentualData(days: number) {
   // should change depending on users gender
   const nutritionGoals = dailyNutritionMale
   const data : number[] = [];
-  const dailyIntake = await getDailyNutrition('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary?days=' + days);
+  const dailyIntake = await getDailyNutrition( this.apiUrl + days);
   if (!dailyIntake) return;
   const dailyIntakeKeys = Object.keys(dailyIntake)
   for (let i = 0; i < labels.length; i++) {

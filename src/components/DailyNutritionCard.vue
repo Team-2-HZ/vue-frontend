@@ -52,7 +52,7 @@ export default {
           .card-title
             h2 Meals nutrition
           .card-text
-            <PolarArea :apiUrl="'https://638755cdd9b24b1be3ed676d.mockapi.io/api/v1/nutrition'" />
+            <PolarArea :apiUrl="'https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary?days='" />
     .col-sm.mh-100.w-50
       .card.h-100
         .card-body 
