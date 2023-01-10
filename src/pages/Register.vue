@@ -16,6 +16,10 @@ const form = ref({
 
 // function to hand the form submit
 const handleSubmit = async () => {
+
+  this.$validator
+
+
   try {
     // use the register method from the AuthUser composable
     await register(form.value);
@@ -55,29 +59,24 @@ const handleSubmit = async () => {
 
       <div class="form-group">
         <label for="passwordInput">Password</label>
-        <input v-model="form.password" type="password" class="form-control" id="passwordInput"
-          placeholder="Enter Password...">
+        <input v-validate="'required'" ref="password" v-model="form.password" type="password" class="form-control"
+          id="passwordInput" placeholder="Enter Password...">
       </div>
 
 
       <div class="form-group">
         <label for="confirmPasswordInput">Confirm Password</label>
-        <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Enter Password Again...">
+        <input v-validate="'required|confirmed:$password'" ref="password" type="password" class="form-control"
+          id="confirmPasswordInput" placeholder="Enter Password Again...">
       </div>
       <br>
       <div>
-        <button type="submit" class="btn w100 btn-success">Register</button>
+        <button type="submit" class="btn btn-success" style="width: 100%">Register</button>
         <br><br>
-        <router-link to="/Login"><button type="button" class="btn w100 btn-outline-success">Already a user? Log in
+        <router-link to="/Login"><button type="button" class="btn btn-outline-success" style="width: 100%">Already a user? Log in
             instead.</button></router-link>
       </div>
     </div>
   </form>
 
 </template>
-
-<style>
-.btn .w100 {
-  width: 100%
-}
-</style>

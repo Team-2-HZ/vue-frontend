@@ -48,25 +48,13 @@ const handleLogin = async (provider) => {
       </div>
       <br>
       <div>
-        <button type="submit" class="btn btn-success">Login</button>
+        <button type="submit" class="btn btn-success" style="width: 100%">Login</button>
         <br>
         <br>
-        <router-link to="/Register"><button type="button" class="btn btn-outline-success">Not yet a user? Register
+        <router-link to="/Register"><button type="button" class="btn btn-outline-success" style="width: 100%">Not yet a
+            user? Register
             instead.</button></router-link>
       </div>
     </div>
   </form>
-  <!-- <form @submit.prevent="handleLogin()">
-      <h1>Login</h1>
-      <label>Email <input v-model="form.email" type="email" /></label>
-      <label>Password <input v-model="form.password" type="password" /></label>
-      <button>Login</button>
-      <router-link to="/forgotPassword">Forgot Password?</router-link>
-    </form> -->
 </template>
-
-<style>
-.btn .w100 {
-  width: 100%
-}
-</style>
