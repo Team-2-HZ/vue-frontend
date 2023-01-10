@@ -39,7 +39,8 @@ console.log(data.value);
 <template>
   <main>
     <DailyNutritionCardVue />
-    <!--TODO: v-for directive should be replaced with something more suitable, but I know this at least works.-->
+    <!--TODO    <DailyNutritionCardVue />
+: v-for directive should be replaced with something more suitable, but I know this at least works.-->
     <div v-for="(target, index) in data" :key="index">
 
       <div style="margin-left: 79%; font-size: large;">Target</div>

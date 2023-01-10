@@ -13,14 +13,14 @@ template(v-if="ingredients")
         th(scope="col") Protein
     tbody
         tr(v-for="ingredient in ingredients" :key="ingredient.id")
-          td(scope="row") {{ingredient.type}} 
-          td {{ingredient.kcal}}
-          td {{ingredient.fat}}
-          td {{ingredient.sat_fat}}
-          td {{ingredient.carbs}}
-          td {{ingredient.sugar}}
-          td {{ingredient.fibers}}
-          td {{ingredient.protein}}
+          td(scope="row") {{ingredient.foodName}} 
+          td {{ingredient.ENERC_KCAL}}
+          td {{ingredient.FAT}}
+          td {{ingredient.SATURATED_FAT}}
+          td {{ingredient.CARBS}}
+          td {{ingredient.SUGAR}}
+          td {{ingredient.FIBRE}}
+          td {{ingredient.PROTEIN}}
 template(v-else)
   p Nothing scanned yet for this meal 
 </template>
@@ -29,7 +29,11 @@ template(v-else)
 import { ref, onBeforeUnmount } from 'vue'
 
 async function getIngredients() {
-  const response = await fetch('https://638755cdd9b24b1be3ed676d.mockapi.io/api/v1/ingredients');
+  const response = await fetch('https://nutrition-calculation-app.onrender.com/api/v1/ingredients', {
+    headers: {
+        'Authorization': 'Bearer miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X'
+    }
+  });
   const data =  await response.json();
   return data;
 }
