@@ -5,9 +5,15 @@
 
     <div>
       <router-link to="/login"><button style="margin-right: 10px" type="button"
-          class="btn btn-outline-success">Login</button></router-link>
+          class="btn btn-success">Login</button></router-link>
       <router-link to="/register"><button style="margin-right: 10px" type="button"
           class="btn btn-outline-success">Register</button></router-link>
     </div>
   </div>
 </template>
+
+<style>
+.btn {
+  width: auto;
+}
+</style>
