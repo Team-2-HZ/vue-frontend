@@ -76,6 +76,8 @@ console.log(data.value);
         </div>
       </div>
 
+      <!-- TODO: Save meal button-->
+
       <!-- PROGRESS BARS -->
       <div class="col">
         <div class="card h-100" style="padding: 20px;">
@@ -84,7 +86,7 @@ console.log(data.value);
           </div>
           <div class="card-text" v-for="(target, index) in data" :key="index">
             <div style="margin-left: 79%; font-size: large;">Target</div>
-            <NutritionProgress :currentValue="4880" :targetValue=target.energy label="Energy" unit="kcal" />
+            <NutritionProgress :currentValue="2000" :targetValue=target.energy label="Energy" unit="kcal" />
             <NutritionProgress :currentValue="200" :targetValue=target.protein label="Protein" unit="gram" />
             <NutritionProgress :currentValue="0" :targetValue=target.carbs label="Carbs" unit="gram" />
             <NutritionProgress :currentValue="0" :targetValue=target.unsatFats label="Unsat. Fats" unit="gram" />
