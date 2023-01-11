@@ -1,5 +1,4 @@
 <script setup>
-import DailyNutritionCardVue from '../components/DailyNutritionCard.vue';
 import NutritionProgress from '../components/NutritionProgress.vue'
 import PolarArea from '../components/charts/PolarArea.vue';
 import DailyNutrition from '../components/charts/DailyNutrition.vue';
