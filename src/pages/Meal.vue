@@ -41,6 +41,8 @@ console.log(data.value);
 </script>
 
 <template>
+  <!--TODO: The elements on this page are way too large. 
+    Ideally, everything should be visible without scaling-->
   <div class="container-fluid h-100">
     <!-- INGREDIENTS -->
     <div class="row mt-4">
@@ -60,8 +62,17 @@ console.log(data.value);
           </div>
         </div>
       </div>
-    </div>
 
+      <!--Save meal-->
+      <form @submit.prevent="submitForm">
+        <div class="form-floating"><input class="form-control" id="mealName" name="mealName"
+            placeholder="Meal's name" /><label for="mealName">Meal's name</label>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2"><button class="btn btn-success me-md-2"
+              type="submit">Save</button></div>
+        </div>
+      </form>
+
+    </div>
 
     <div class="row mt-4 mb-4">
       <!-- GRAPH -->
@@ -75,8 +86,6 @@ console.log(data.value);
           </div>
         </div>
       </div>
-
-      <!-- TODO: Save meal button-->
 
       <!-- PROGRESS BARS -->
       <div class="col">
