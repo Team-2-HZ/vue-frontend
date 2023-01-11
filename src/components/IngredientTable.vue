@@ -1,5 +1,5 @@
 <template lang="pug">
-template(v-if="ingredients")
+template(v-if="ingredients.length != 0")
   table.table.table-hover
     thead
       tr 

@@ -50,13 +50,14 @@ export default {
       .card.mh-50
         .card-body
           .card-title
-            h2 Meals nutrition
+            h2 Daily nutrition
           .card-text
             <PolarArea :apiUrl="'https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary?days='" />
     .col-sm.mh-100.w-50
       .card.h-100
         .card-body 
           .card-text.h-75
+            h2 Bar chart
           hr
           .card-text
             .align-middle
