@@ -42,6 +42,7 @@ console.log(data.value);
 <template>
   <!--TODO: The elements on this page are way too large. 
     Ideally, everything should be visible without scaling-->
+  <!--TODO: Split some of these up into components-->
   <div class="container-fluid h-100">
     <!-- INGREDIENTS -->
     <div class="row mt-4">
