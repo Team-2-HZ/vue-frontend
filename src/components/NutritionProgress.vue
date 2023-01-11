@@ -1,20 +1,26 @@
 <template>
     <div style="display: flex; height: 30px">
-        <div style="width: 8%;">
+        <div style="width: 20%;">
             {{ label }}
         </div>
-        <div style="width: 92%">
+        <div style="width: 80%">
             <div class="progress" style="height: 25px;">
-                <div class="progress-bar" :class="color()" role="progressbar" :style="{ 'width': ariaValue + '%'}"
+                <div class="progress-bar" :class="color()" role="progressbar" :style="{ 'width': ariaValue + '%' }"
                     :aria-valuenow="ariaValue" aria-valuemin="0" aria-valuemax="100">
                 </div>
             </div>
             <!--TODO: It works, but it's a botchy solution. Especially the way I use pixels and percentages for positioning stuff makes it inflexible for re-use in sitautions other than this spefic one.
     78% - 81.5% is intentional and not a math mistake. I think it has to do with the spacing / kerning of "|" symbol-->
             <div style="height: 0%">
-                <div style="position: relative; bottom: 28px; text-align: center;">{{ currentValue }} / {{ targetValue }} {{ unit }}
-                    <div style="position: absolute; bottom: -6px; font-weight: bold; font-size: x-large; margin-left: 78%;">|</div>
-                    <div style="position: absolute;  bottom: -6px; font-weight: bold; font-size: x-large; margin-left: 81.2%;">|</div>
+                <div style="position: relative; bottom: 28px; text-align: center;">{{ currentValue }} / {{
+                    targetValue
+                }} {{ unit }}
+                    <div
+                        style="position: absolute; bottom: -6px; font-weight: bold; font-size: x-large; margin-left: 78%;">
+                        |</div>
+                    <div
+                        style="position: absolute;  bottom: -6px; font-weight: bold; font-size: x-large; margin-left: 81.2%;">
+                        |</div>
                 </div>
             </div>
         </div>
@@ -45,7 +51,7 @@ export default {
             required: false,
             default: ""
         },
-        
+
     },
     methods: {
         color: function () {
