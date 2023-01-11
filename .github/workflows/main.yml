@@ -29,4 +29,4 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           source: dist/*
-          target: /var/www//var/www/vps-zap468762-3.zap-srv.com
+          target: /var/www/vps-zap468762-3.zap-srv.com
