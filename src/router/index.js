@@ -73,6 +73,15 @@ const routes = [
     component: () => import("@/pages/Meal.vue"),
   },
 
+  {
+    name: "Stats",
+    path: "/stats",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("@/pages/Stats.vue"),
+  },
+
 ];
 
 const router = createRouter({
