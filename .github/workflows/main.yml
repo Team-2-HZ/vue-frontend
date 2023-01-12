@@ -26,7 +26,7 @@ jobs:
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PASSWORD }}
+          username: ${{ secrets.TEST_NAME }}
+          password: ${{ secrets.TEST_PASSWORD }}
           source: dist/*
           target: /var/www/vps-zap468762-3.zap-srv.com
