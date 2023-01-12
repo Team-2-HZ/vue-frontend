@@ -63,15 +63,6 @@ console.log(data.value);
         </div>
       </div>
 
-      <!--Save meal-->
-      <form @submit.prevent="submitForm">
-        <div class="form-floating"><input class="form-control" id="mealName" name="mealName"
-            placeholder="Meal's name" /><label for="mealName">Meal's name</label>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2"><button class="btn btn-success me-md-2"
-              type="submit">Save</button></div>
-        </div>
-      </form>
-
     </div>
 
     <div class="row mt-4 mb-4">
@@ -100,6 +91,15 @@ console.log(data.value);
             <NutritionProgress :currentValue="0" :targetValue=target.carbs label="Carbs" unit="gram" />
             <NutritionProgress :currentValue="0" :targetValue=target.unsatFats label="Unsat. Fats" unit="gram" />
           </div>
+          <hr class="mt-4">
+          <!--Save meal-->
+          <form @submit.prevent="submitForm" class="mt-4">
+            <div class="form-floating"><input class="form-control" id="mealName" name="mealName"
+                placeholder="Meal's name" /><label for="mealName">Meal's name</label>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2"><button class="btn btn-success me-md-2"
+                  type="submit">Save</button></div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
