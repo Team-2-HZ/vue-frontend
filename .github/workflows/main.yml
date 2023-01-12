@@ -29,4 +29,4 @@ jobs:
           username: ${{ secrets.TEST_NAME }}
           password: ${{ secrets.TEST_PASSWORD }}
           source: dist/*
-          target: /var/www/vps-zap468762-3.zap-srv.com
+          target: /test
