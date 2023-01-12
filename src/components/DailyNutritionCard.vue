@@ -37,6 +37,7 @@ export default {
 
 <template lang="pug">
 .container-fluid.h-100
+  h1 TEST ALLA
   .row.mt-4
     .col(style="height:50vh; overflow:scroll;")
       .card
