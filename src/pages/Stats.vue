@@ -22,6 +22,7 @@ export default {
       .card-text
         .row 
           .col
+            h1 test
             <PolarArea :apiUrl="'https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary?days='" :days="this.days" />
           .col
             p.mt-5.pb-4 The values shown in the chart are measured in percentages according to your chosen target. To change the the time displayed in the Graph you can change the number in the input field below
