@@ -1,14 +1,32 @@
-name: Execute command on server
+name: Deploy to VPS
 on:
   push:
     branches:
-      - main
+      - feature/actions_testing
 jobs:
-  run-command:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Connect to server and run command
-        env:
-          SSH_PASSWORD: ${{ secrets.VPS_PASSWORD }}
-        run: |
-          echo "$SSH_PASSWORD" | sshpass -p - ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} 'bash -c "cd /var/www/vps-zap468762-3.zap-srv.com && git pull"'
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 19.1
+        uses: actions/setup-node@v2
+        with:
+          node-version: 19.1.0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Deploy to VPS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          source: dist/*
+          target: /var/www/vps-zap468762-3.zap-srv.com
