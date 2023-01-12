@@ -2,7 +2,7 @@ name: Deploy to VPS
 on:
   push:
     branches:
-      - feature/actions_testing
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
