@@ -1,32 +1,32 @@
 name: Deploy to VPS
+
 on:
   push:
     branches:
-      - feature/actions_testing
+      - main
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use Node.js 19.1
-        uses: actions/setup-node@v2
-        with:
-          node-version: 19.1.0
+      - name: Build and prepare files
+        run: |
+          npm ci
+          npm run build
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Configure sshpass
+        run: |
+          apt-get update
+          apt-get install -y sshpass
 
-      - name: Build app
-        run: npm run build
-
-      - name: Deploy to VPS
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.TEST_NAME }}
-          password: ${{ secrets.TEST_PASSWORD }}
-          source: dist/*
-          target: /test
+      - name: Deploy to server
+        env:
+          USER: ${{ secrets.TEST_NAME }}
+          PASSWORD: ${{ secrets.TEST_PASSWORD }}
+          SERVER: ${{ secrets.VPS_HOST }}
+        run: |
+          sshpass -p $PASSWORD scp -r dist/ $USER@$SERVER:/var/www/vps-zap468762-3.zap-srv.com
