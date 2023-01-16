@@ -24,42 +24,42 @@
 
 <script>
 export default {
-    name: 'TargetCard',
-    props: {
-        id: {
-            type: Number,
-            required: true,
-            default: 0
-        },
+	name: 'TargetCard',
+	props: {
+		id: {
+			type: Number,
+			required: true,
+			default: 0
+		},
 
-        energy: {
-            type: Number,
-            required: true,
-            default: 0
-        },
+		energy: {
+			type: Number,
+			required: true,
+			default: 0
+		},
 
-        protein: {
-            type: Number,
-            required: true,
-            default: 0
-        },
+		protein: {
+			type: Number,
+			required: true,
+			default: 0
+		},
 
-        carbs: {
-            type: Number,
-            required: true,
-            default: 0
-        },
+		carbs: {
+			type: Number,
+			required: true,
+			default: 0
+		},
 
-        unsatFats: {
-            type: Number,
-            required: true,
-            default: 0
-        },
-    },
-    computed: {
-        idComp() {
-            return this.id;
-        },
-    }
-}
+		unsatFats: {
+			type: Number,
+			required: true,
+			default: 0
+		},
+	},
+	computed: {
+		idComp() {
+			return this.id;
+		},
+	}
+};
 </script>

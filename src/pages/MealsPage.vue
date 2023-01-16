@@ -36,29 +36,28 @@
 
 <script>
 async function getMeals() {
-  const response = await fetch('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/meal', {
-    headers: {
-        'Authorization': 'Bearer miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X'
-    }
-  });
-  const data =  await response.json();
-  console.log(data);
-  return data;
+	const response = await fetch('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/meal', {
+		headers: {
+			'Authorization': 'Bearer miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X'
+		}
+	});
+	const data =  await response.json();
+	console.log(data);
+	return data;
 }
 
 export default {
-  data() {
-    return {
-      meals: []
-    }
-  },
-  mounted() {
-    getMeals()
-      .then((data) => (this.meals = data))
-      .catch((error) => {
-          console.log(error);
-      });
-  },
-}
+	data() {
+		return {
+			meals: []
+		};
+	},
+	mounted() {
+		getMeals()
+			.then((data) => (this.meals = data))
+			.catch((error) => {
+				console.log(error);
+			});
+	},
+};
 </script>
-

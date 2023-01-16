@@ -2,15 +2,15 @@
 import PolarArea from '../components/charts/PolarArea.vue';
 
 export default {
-  components: {
-    PolarArea,
-  },
-  data () {
-    return {
-      days: 7
-    }
-  }
-}
+	components: {
+		PolarArea,
+	},
+	data () {
+		return {
+			days: 7
+		};
+	}
+};
 </script>
 
 <template lang="pug">
