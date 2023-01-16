@@ -19,12 +19,14 @@ const { user } = useAuthUser();
 
 const data = ref([]);
 const dataLoaded = ref(null);
-const absoluteData = ref([])
+
+const absoluteData = ref([]);
+const absoluteDataLoaded = ref(null);
 
 const getData = async () => {
   try {
     const { data: targets, error } = await supabase.from('targets').select("*").eq("id", id).eq("user_id", user.value.id);
-    // TODO: Implement some sort of security measure that prevents users from taking eachother's meals.
+    // TODO: Implement some sort of security measure that prevents users from using the targets of other users.
     if (error) throw error;
     data.value = targets;
     dataLoaded.value = true;
@@ -34,17 +36,24 @@ const getData = async () => {
   }
 };
 
-async function getAbsoluteData() {
-  console.log('fetching absolute nutrition');
-  const response = await fetch('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary/absolute?days=1', {
-    headers: {
-      'Authorization': 'Bearer miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X'
-    }
-  });
 
-  const absoluteData = await response.json();
-  console.log(absoluteData);
-  return absoluteData;
+async function getAbsoluteData() {
+  try {
+    console.log('fetching absolute nutrition');
+    const response = await fetch('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary/absolute?days=1', {
+      headers: {
+        'Authorization': 'Bearer miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X'
+      }
+    });
+
+    absoluteData.value = await response.json();
+    absoluteDataLoaded.value = true;
+
+    console.log(absoluteData);
+    return absoluteData;
+  } catch {
+    console.warn("FUCK")
+  }
 }
 
 
@@ -53,7 +62,7 @@ console.log(data);
 console.log(data.value);
 
 setInterval(function () {
-  absoluteData.value = getAbsoluteData()
+  getAbsoluteData()
 }, 5000);
 
 </script>
@@ -114,10 +123,10 @@ setInterval(function () {
           </div>
           <div class="card-text" v-for="(target, index) in data" :key="index">
             <div style="margin-left: 79%; font-size: large;">Target</div>
-            <NutritionProgress :currentValue="1500" :targetValue=target.energy label="Energy" unit="kcal" />
-            <NutritionProgress :currentValue="152" :targetValue=target.protein label="Protein" unit="gram" />
-            <NutritionProgress :currentValue="300" :targetValue=target.carbs label="Carbs" unit="gram" />
-            <NutritionProgress :currentValue="30" :targetValue=target.unsatFats label="Unsat. Fats" unit="gram" />
+            <NutritionProgress :currentValue=absoluteData.ENERC_KCAL :targetValue=target.energy label="Energy" unit="kcal" />
+            <NutritionProgress :currentValue=absoluteData.PROTEIN :targetValue=target.protein label="Protein" unit="gram" />
+            <NutritionProgress :currentValue=absoluteData.CARBS :targetValue=target.carbs label="Carbs" unit="gram" />
+            <NutritionProgress :currentValue=absoluteData.FAT :targetValue=target.unsatFats label="Unsat. Fats" unit="gram" />
           </div>
         </div>
       </div>
