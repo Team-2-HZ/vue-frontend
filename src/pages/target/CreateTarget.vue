@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-import useAuthUser from "../../composables/UseAuthUser.js";
-import useSupabase from "../../composables/UseSupabase.js";
+import useAuthUser from '../../composables/UseAuthUser.js';
+import useSupabase from '../../composables/UseSupabase.js';
 
 // Use necessary composables
 const router = useRouter();
@@ -12,24 +12,24 @@ const { user } = useAuthUser();
 
 // keep up with form data
 const form = ref({
-    targetName: "",
-    energy: "",
-    protein: "",
-    carbs: "",
-    unsatFats: ""
+	targetName: '',
+	energy: '',
+	protein: '',
+	carbs: '',
+	unsatFats: ''
 });
 
 const handleSubmit = async () => {
-    try {
-        const { error } = await supabase
-            .from('targets')
-            .insert({ user_id: user.value.id, name: form.value.targetName, energy: form.value.energy, protein: form.value.protein, carbs: form.value.carbs, unsatFats: form.value.unsatFats })
-        router.push({
-            name: "AllTargets",
-        });
-    } catch (error) {
-        alert(error.message);
-    }
+	try {
+		await supabase
+			.from('targets')
+			.insert({ user_id: user.value.id, name: form.value.targetName, energy: form.value.energy, protein: form.value.protein, carbs: form.value.carbs, unsatFats: form.value.unsatFats });
+		router.push({
+			name: 'AllTargets',
+		});
+	} catch (error) {
+		alert(error.message);
+	}
 };
 </script>
 

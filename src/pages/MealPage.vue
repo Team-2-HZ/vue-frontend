@@ -1,15 +1,13 @@
 <script setup>
-import NutritionProgress from '../components/NutritionProgress.vue'
+import NutritionProgress from '../components/NutritionProgress.vue';
 import PolarArea from '../components/charts/PolarArea.vue';
-import DailyNutrition from '../components/charts/DailyNutrition.vue';
 import IngredientTable from '../components/IngredientTable.vue';
-import axios from 'axios';
 
-import { ref } from "vue"
-import { useRoute } from "vue-router";
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-import useAuthUser from "../composables/UseAuthUser.js";
-import useSupabase from "../composables/UseSupabase.js";
+import useAuthUser from '../composables/UseAuthUser.js';
+import useSupabase from '../composables/UseSupabase.js';
 
 // Use necessary composables
 const route = useRoute();
@@ -91,15 +89,6 @@ setInterval(function () {
         </div>
       </div>
 
-      <!--Save meal-->
-      <form @submit.prevent="submitForm">
-        <div class="form-floating"><input class="form-control" id="mealName" name="mealName"
-            placeholder="Meal's name" /><label for="mealName">Meal's name</label>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2"><button class="btn btn-success me-md-2"
-              type="submit">Save</button></div>
-        </div>
-      </form>
-
     </div>
 
     <div class="row mt-4 mb-4">
@@ -128,6 +117,15 @@ setInterval(function () {
             <NutritionProgress :currentValue=absoluteData.CARBS :targetValue=target.carbs label="Carbs" unit="gram" />
             <NutritionProgress :currentValue=absoluteData.FAT-absoluteData.SATURATED_FAT :targetValue=target.unsatFats label="Unsat. Fats" unit="gram" />
           </div>
+          <hr class="mt-4">
+          <!--Save meal-->
+          <form @submit.prevent="submitForm" class="mt-4">
+            <div class="form-floating"><input class="form-control" id="mealName" name="mealName"
+                placeholder="Meal's name" v-model="mealName"/><label for="mealName">Meal's name</label>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2"><button class="btn btn-success me-md-2"
+                  type="submit">Save</button></div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -136,53 +134,34 @@ setInterval(function () {
 
 <script>
 export default {
-  components: {
-    DailyNutrition,
-    PolarArea,
-    IngredientTable,
-    NutritionProgress
-  },
-  data() {
-    return {
-      mealName: '',
-    }
-  },
-  methods: {
-    async submitForm() {
-      try {
-        const token = 'miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X'
-        const response = await axios.post('https://nutrition-calculation-app.onrender.com/api/v1/meals', {
-          mealName: this.mealName,
-        }, {
-          headers: {
-            'Authorization': 'Bearer ' + token
-          }
-        });
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  },
-  // async mounted() {
-  //   const fetchData = async () => {
-  //     try {
-  //       const absData = await getAbsoluteData.bind(this)(1);
-  //       this.absData["datasets"][0].data = data;
-  //       this.isLoaded = true
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-  //   }
-
-  //   fetchData();
-
-  //   this.intervalId = setInterval(async () => {
-  //     fetchData();
-  //   }, 5000);
-  // },
-  // beforeUnmount() {
-  //   clearInterval(this.intervalId);
-  // }
-}
+	components: {
+		PolarArea,
+		IngredientTable,
+		NutritionProgress
+	},
+	data() {
+		return {
+			mealName: '',
+		};
+	},
+	methods: {
+		async submitForm() {
+			const token = 'miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X';
+			console.log(this.mealName);
+			await fetch('https://nutrition-calculation-app.onrender.com/api/v1/meals', {
+				method: 'POST',
+				mode: 'cors',
+				headers: {
+					'Authorization': 'Bearer ' + token,
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					'data': {
+						'name': this.mealName,
+					}
+				})
+			});
+		}
+	}
+};
 </script>
