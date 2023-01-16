@@ -1,5 +1,5 @@
 <script setup>
-import useAuthUser from "@/composables/UseAuthUser";
+import useAuthUser from '@/composables/UseAuthUser';
 const { isLoggedIn } = useAuthUser();
 </script>
 <template>

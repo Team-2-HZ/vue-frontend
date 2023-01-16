@@ -29,51 +29,51 @@
 
 <script>
 export default {
-    name: 'NutritionProgress',
-    props: {
-        currentValue: {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        targetValue: {
-            type: Number,
-            required: true,
-            default: 100 // TODO: Prevent this from being set to 0. Please never set this to 0.
-        },
-        label: {
-            type: String,
-            required: false,
-            default: ""
-        },
-        unit: {
-            type: String,
-            required: false,
-            default: ""
-        },
+	name: 'NutritionProgress',
+	props: {
+		currentValue: {
+			type: Number,
+			required: true,
+			default: 0
+		},
+		targetValue: {
+			type: Number,
+			required: true,
+			default: 100 // TODO: Prevent this from being set to 0. Please never set this to 0.
+		},
+		label: {
+			type: String,
+			required: false,
+			default: ''
+		},
+		unit: {
+			type: String,
+			required: false,
+			default: ''
+		},
 
-    },
-    methods: {
-        color: function () {
-            // TODO: There's probably a better way of doing this.
-            let lowerLimit = this.targetValue * 0.98;
-            let upperLimit = this.targetValue * 1.02;
-            if (this.currentValue < lowerLimit) {
-                console.log('NOT ENOUGH')
-                return "progress-bar-striped bg-warning"
-            } else if (this.currentValue >= lowerLimit && this.currentValue <= upperLimit) {
-                console.log('JUST RIGHT')
-                return "bg-success"
-            } else {
-                console.log('TOO MUCH')
-                return "progress-bar-striped bg-danger"
-            }
-        }
-    },
-    computed: {
-        ariaValue() {
-            return this.currentValue / this.targetValue * 100 * 0.8;
-        },
-    }
-}
+	},
+	methods: {
+		color: function () {
+			// TODO: There's probably a better way of doing this.
+			let lowerLimit = this.targetValue * 0.98;
+			let upperLimit = this.targetValue * 1.02;
+			if (this.currentValue < lowerLimit) {
+				console.log('NOT ENOUGH');
+				return 'progress-bar-striped bg-warning';
+			} else if (this.currentValue >= lowerLimit && this.currentValue <= upperLimit) {
+				console.log('JUST RIGHT');
+				return 'bg-success';
+			} else {
+				console.log('TOO MUCH');
+				return 'progress-bar-striped bg-danger';
+			}
+		}
+	},
+	computed: {
+		ariaValue() {
+			return this.currentValue / this.targetValue * 100 * 0.8;
+		},
+	}
+};
 </script>
