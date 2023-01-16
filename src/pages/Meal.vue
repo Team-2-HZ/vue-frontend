@@ -126,7 +126,7 @@ setInterval(function () {
             <NutritionProgress :currentValue=absoluteData.ENERC_KCAL :targetValue=target.energy label="Energy" unit="kcal" />
             <NutritionProgress :currentValue=absoluteData.PROTEIN :targetValue=target.protein label="Protein" unit="gram" />
             <NutritionProgress :currentValue=absoluteData.CARBS :targetValue=target.carbs label="Carbs" unit="gram" />
-            <NutritionProgress :currentValue=absoluteData.FAT :targetValue=target.unsatFats label="Unsat. Fats" unit="gram" />
+            <NutritionProgress :currentValue=absoluteData.FAT-absoluteData.SATURATED_FAT :targetValue=target.unsatFats label="Unsat. Fats" unit="gram" />
           </div>
         </div>
       </div>
