@@ -1,17 +1,13 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+
 // Import our custom CSS
-import '../src/scss/styles.scss'
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import '../src/scss/styles.scss';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
-// Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap'
+const app = createApp(App);
 
-// import './assets/index.css'
+app.use(router);
 
-const app = createApp(App)
-
-app.use(router)
-
-app.mount('#app')
+app.mount('#app');

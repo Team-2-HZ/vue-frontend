@@ -1,12 +1,9 @@
 <script setup>
-import { ref } from "vue"
-import { useRouter } from "vue-router";
-
-import useAuthUser from "../../composables/UseAuthUser.js";
-import useSupabase from "../../composables/UseSupabase.js";
+import { ref } from 'vue';
+import useAuthUser from '../../composables/UseAuthUser.js';
+import useSupabase from '../../composables/UseSupabase.js';
 
 // Use necessary composables
-const router = useRouter();
 const { supabase } = useSupabase();
 const { user } = useAuthUser();
 
@@ -14,15 +11,15 @@ const data = ref([]);
 const dataLoaded = ref(null);
 
 const getData = async () => {
-    try {
-        const { data: targets, error } = await supabase.from('targets').select('*').eq("user_id", user.value.id)
-        if (error) throw error;
-        data.value = targets;
-        dataLoaded.value = true;
-    }
-    catch (error) {
-        console.warn(error.message)
-    }
+	try {
+		const { data: targets, error } = await supabase.from('targets').select('*').eq('user_id', user.value.id);
+		if (error) throw error;
+		data.value = targets;
+		dataLoaded.value = true;
+	}
+	catch (error) {
+		console.warn(error.message);
+	}
 };
 
 getData();
@@ -61,7 +58,10 @@ console.log(data.value);
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(target, index) in data">
+                <tr 
+                    v-for="target in data"
+                    :key="target.id"
+                >
                     <th scope="row">{{ target.name }}</th>
                     <td>{{ target.energy }}</td>
                     <td>{{ target.protein }}</td>

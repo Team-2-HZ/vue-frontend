@@ -1,15 +1,14 @@
 <script setup>
-import NutritionProgress from '../components/NutritionProgress.vue'
+import NutritionProgress from '../components/NutritionProgress.vue';
 import PolarArea from '../components/charts/PolarArea.vue';
-import DailyNutrition from '../components/charts/DailyNutrition.vue';
 import IngredientTable from '../components/IngredientTable.vue';
 import axios from 'axios';
 
-import { ref } from "vue"
-import { useRoute } from "vue-router";
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-import useAuthUser from "../composables/UseAuthUser.js";
-import useSupabase from "../composables/UseSupabase.js";
+import useAuthUser from '../composables/UseAuthUser.js';
+import useSupabase from '../composables/UseSupabase.js';
 
 // Use necessary composables
 const route = useRoute();
@@ -21,16 +20,16 @@ const data = ref([]);
 const dataLoaded = ref(null);
 
 const getData = async () => {
-  try {
-    const { data: targets, error } = await supabase.from('targets').select("*").eq("id", id).eq("user_id", user.value.id);
-    // TODO: Implement some sort of security measure that prevents users from taking eachother's meals.
-    if (error) throw error;
-    data.value = targets;
-    dataLoaded.value = true;
-  }
-  catch (error) {
-    console.warn(error.message)
-  }
+	try {
+		const { data: targets, error } = await supabase.from('targets').select('*').eq('id', id).eq('user_id', user.value.id);
+		// TODO: Implement some sort of security measure that prevents users from taking eachother's meals.
+		if (error) throw error;
+		data.value = targets;
+		dataLoaded.value = true;
+	}
+	catch (error) {
+		console.warn(error.message);
+	}
 };
 
 getData();
@@ -108,33 +107,32 @@ console.log(data.value);
 
 <script>
 export default {
-  components: {
-    DailyNutrition,
-    PolarArea,
-    IngredientTable,
-    NutritionProgress
-  },
-  data() {
-    return {
-      mealName: '',
-    }
-  },
-  methods: {
-    async submitForm() {
-      try {
-        const token = 'miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X'
-        const response = await axios.post('https://nutrition-calculation-app.onrender.com/api/v1/meals', {
-          mealName: this.mealName,
-        }, {
-          headers: {
-            'Authorization': 'Bearer ' + token
-          }
-        });
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }
-}
+	components: {
+		PolarArea,
+		IngredientTable,
+		NutritionProgress
+	},
+	data() {
+		return {
+			mealName: '',
+		};
+	},
+	methods: {
+		async submitForm() {
+			try {
+				const token = 'miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X';
+				const response = await axios.post('https://nutrition-calculation-app.onrender.com/api/v1/meals', {
+					mealName: this.mealName,
+				}, {
+					headers: {
+						'Authorization': 'Bearer ' + token
+					}
+				});
+				console.log(response.data);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+	}
+};
 </script>

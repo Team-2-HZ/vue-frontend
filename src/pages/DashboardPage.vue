@@ -1,8 +1,8 @@
 <script setup>
-import useAuthUser from "@/composables/UseAuthUser";
+import useAuthUser from '@/composables/UseAuthUser';
 const { user } = useAuthUser();
 
-console.log(user.value.id)
+console.log(user.value.id);
 </script>
 
 <template>
