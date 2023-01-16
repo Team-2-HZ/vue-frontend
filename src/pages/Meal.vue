@@ -19,6 +19,7 @@ const { user } = useAuthUser();
 
 const data = ref([]);
 const dataLoaded = ref(null);
+const absoluteData = ref([])
 
 const getData = async () => {
   try {
@@ -33,9 +34,27 @@ const getData = async () => {
   }
 };
 
+async function getAbsoluteData() {
+  console.log('fetching absolute nutrition');
+  const response = await fetch('https://nutrition-calculation-app.onrender.com/api/v1/nutrition/summary/absolute?days=1', {
+    headers: {
+      'Authorization': 'Bearer miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X'
+    }
+  });
+
+  const absoluteData = await response.json();
+  console.log(absoluteData);
+  return absoluteData;
+}
+
+
 getData();
 console.log(data);
 console.log(data.value);
+
+setInterval(function () {
+  absoluteData.value = getAbsoluteData()
+}, 5000);
 
 </script>
 
@@ -95,10 +114,10 @@ console.log(data.value);
           </div>
           <div class="card-text" v-for="(target, index) in data" :key="index">
             <div style="margin-left: 79%; font-size: large;">Target</div>
-            <NutritionProgress :currentValue="2000" :targetValue=target.energy label="Energy" unit="kcal" />
-            <NutritionProgress :currentValue="200" :targetValue=target.protein label="Protein" unit="gram" />
-            <NutritionProgress :currentValue="0" :targetValue=target.carbs label="Carbs" unit="gram" />
-            <NutritionProgress :currentValue="0" :targetValue=target.unsatFats label="Unsat. Fats" unit="gram" />
+            <NutritionProgress :currentValue="1500" :targetValue=target.energy label="Energy" unit="kcal" />
+            <NutritionProgress :currentValue="152" :targetValue=target.protein label="Protein" unit="gram" />
+            <NutritionProgress :currentValue="300" :targetValue=target.carbs label="Carbs" unit="gram" />
+            <NutritionProgress :currentValue="30" :targetValue=target.unsatFats label="Unsat. Fats" unit="gram" />
           </div>
         </div>
       </div>
@@ -135,6 +154,26 @@ export default {
         console.error(error);
       }
     }
-  }
+  },
+  // async mounted() {
+  //   const fetchData = async () => {
+  //     try {
+  //       const absData = await getAbsoluteData.bind(this)(1);
+  //       this.absData["datasets"][0].data = data;
+  //       this.isLoaded = true
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+  //   }
+
+  //   fetchData();
+
+  //   this.intervalId = setInterval(async () => {
+  //     fetchData();
+  //   }, 5000);
+  // },
+  // beforeUnmount() {
+  //   clearInterval(this.intervalId);
+  // }
 }
 </script>
