@@ -2,7 +2,6 @@
 import NutritionProgress from '../components/NutritionProgress.vue';
 import PolarArea from '../components/charts/PolarArea.vue';
 import IngredientTable from '../components/IngredientTable.vue';
-import axios from 'axios';
 
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -94,7 +93,7 @@ console.log(data.value);
           <!--Save meal-->
           <form @submit.prevent="submitForm" class="mt-4">
             <div class="form-floating"><input class="form-control" id="mealName" name="mealName"
-                placeholder="Meal's name" /><label for="mealName">Meal's name</label>
+                placeholder="Meal's name" v-model="mealName"/><label for="mealName">Meal's name</label>
               <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2"><button class="btn btn-success me-md-2"
                   type="submit">Save</button></div>
             </div>
@@ -119,19 +118,21 @@ export default {
 	},
 	methods: {
 		async submitForm() {
-			try {
-				const token = 'miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X';
-				const response = await axios.post('https://nutrition-calculation-app.onrender.com/api/v1/meals', {
-					mealName: this.mealName,
-				}, {
-					headers: {
-						'Authorization': 'Bearer ' + token
+			const token = 'miTQ1NwbocCI?A2uyop1?VN=l3wh?kebR6WuepYJCOFfzWqGImXfiO/Ksed5pAxQBP8km8qU!6RmhehCPlF5D7TZm?R8w4bH8JpQXxrgABVDfAHyC9yBp3M2zxCQN13-oSf-fJhqjY-X9HlyMyq6y3Rm486eOx5VGWt!upDx-Y3CorzLs747otpnGEcfOQozNoSzJqlC!PZGypR22j/2DD1jzuCml!eHjfkX=sT8lQYqabuOnAJ/fhI6HKdo1p0X';
+			console.log(this.mealName);
+			await fetch('https://nutrition-calculation-app.onrender.com/api/v1/meals', {
+				method: 'POST',
+				mode: 'cors',
+				headers: {
+					'Authorization': 'Bearer ' + token,
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					'data': {
+						'name': this.mealName,
 					}
-				});
-				console.log(response.data);
-			} catch (error) {
-				console.error(error);
-			}
+				})
+			});
 		}
 	}
 };
