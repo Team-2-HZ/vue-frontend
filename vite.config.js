@@ -8,6 +8,9 @@ import vuePugPlugin from 'vue-pug-plugin'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), vuePugPlugin],
+  test: {
+    environment: "jsdom"
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
