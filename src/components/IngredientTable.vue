@@ -4,6 +4,7 @@ template(v-if="ingredients.length != 0")
     thead
       tr 
         th(scope="col") Ingredient
+        th(scope="col") Grams
         th(scope="col") KCAL
         th(scope="col") Fat
         th(scope="col") Sat. Fats
@@ -14,6 +15,7 @@ template(v-if="ingredients.length != 0")
     tbody
         tr(v-for="ingredient in ingredients" :key="ingredient.id")
           td(scope="row") {{ingredient.foodName}} 
+          td {{ ingredient.quantity }}
           td {{ingredient.ENERC_KCAL}}
           td {{ingredient.FAT}}
           td {{ingredient.SATURATED_FAT}}
@@ -35,6 +37,7 @@ async function getIngredients() {
     }
   });
   const data =  await response.json();
+  console.log(data);
   return data;
 }
 
