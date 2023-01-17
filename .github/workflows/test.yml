@@ -1,10 +1,8 @@
-name: Execute tests
+name: Run tests
 
 on:
   push:
     branches:
-      - "*"
-      - "*/*"
       - "**"
 
 jobs:
@@ -14,5 +12,5 @@ jobs:
         - uses: actions/checkout@v2
         - name: Install dependencies
           run: npm ci
-        - name: Run tests
+        - name: Run all tests
           run: npm run test
