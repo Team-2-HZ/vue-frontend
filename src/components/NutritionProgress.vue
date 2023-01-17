@@ -55,7 +55,6 @@ export default {
 	},
 	methods: {
 		color: function () {
-			// TODO: There's probably a better way of doing this.
 			let lowerLimit = this.targetValue * 0.98;
 			let upperLimit = this.targetValue * 1.02;
 			if (this.currentValue < lowerLimit) {
