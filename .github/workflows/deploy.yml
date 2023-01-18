@@ -21,7 +21,12 @@ jobs:
 
       - name: Linter
         run: npm run lint --max-errors=0 --max-warnings=3
-        if: ${{failure()}}
+      - name: Check lint result
+        run: |
+          if [ $? -ne 0 ]; then
+            echo "Linter failed"
+            exit 1
+          fi
 
       - name: Build app
         run: npm run build
