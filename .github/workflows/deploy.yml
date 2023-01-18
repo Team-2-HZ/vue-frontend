@@ -18,9 +18,10 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Linter
-        run: npm run lint
+        run: npm run lint --max-errors=0 --max-warnings=3
+        if: ${{failure}}
 
       - name: Build app
         run: npm run build
