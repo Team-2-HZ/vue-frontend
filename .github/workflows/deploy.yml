@@ -21,7 +21,7 @@ jobs:
 
       - name: Linter
         run: npm run lint --max-errors=0 --max-warnings=3
-        if: ${{failure}}
+        if: ${{failure()}}
 
       - name: Build app
         run: npm run build
